@@ -5,7 +5,7 @@ const router = new express.Router();
 const upload= require("../uploads/uploads");
 const auth= require("../auth/authentication");
 
-
+//single profile view
 router.get("/profile/single/:uid", function(req,res){
     const uid = req.params.uid
     
@@ -19,6 +19,8 @@ router.get("/profile/single/:uid", function(req,res){
     })
 })
 
+
+//updating
 router.put("/profile/insert/:pid",upload.single('profile_image'), function (req, res) {
     
     console.log(req.body)
@@ -52,7 +54,7 @@ router.put("/profile/insert/:pid",upload.single('profile_image'), function (req,
      })
 })
 
-
+//for getting user details
 router.get("/profile/details", function (req, res) {
     const fullname =req.body.fullname;
     const phone =req.body.phone;
@@ -72,7 +74,7 @@ router.get("/profile/details", function (req, res) {
       });
   });
 
-
+//for approving the profile
   router.put("/profile/approve",  function (req, res) {
     const id = req.body.id
     User.findOne({ _id: id })
