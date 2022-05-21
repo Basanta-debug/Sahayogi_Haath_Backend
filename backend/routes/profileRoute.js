@@ -5,7 +5,7 @@ const router = new express.Router();
 const upload= require("../uploads/uploads");
 const auth= require("../auth/authentication");
 
-
+//get single view
 router.get("/profile/single/:uid", function(req,res){
     const uid = req.params.uid
     
