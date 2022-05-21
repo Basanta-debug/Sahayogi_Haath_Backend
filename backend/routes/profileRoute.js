@@ -20,6 +20,61 @@ router.get("/profile/single/:uid", function(req,res){
 })
 
 
+//hotel booking for users'
+router.put("/profile/insert/:pid",upload.single('profile_image'), function (req, res) {
+    
+  console.log(req.body)
+  // const id=req.adminInfo.id;
+  const fullname =req.body.fullname;
+  const phone =req.body.phone;
+  const gender =req.body.gender;
+  const dateofbirth =req.body.dateofbirth;
+  const address =req.body.address;
+  const photo =req?.file?.filename;
+  const profile = User.findOneAndUpdate(
+      {_id:req.params.pid},
+      
+      {
+      // id:id,
+      fullname:fullname,
+      phone:phone,
+      gender:gender,
+      dateofbirth:dateofbirth,
+      address:address,
+      photo:photo,
+  })
+  .then(function (e) {
+      console.log(e);
+       res.json({mes:"data is inserted", success:true}) 
+       }).catch(function (e) {
+           console.log(e);
+          res.json({
+              mes:"something went wrong!!"
+          })
+   })
+})
+
+
+router.get("/profile/details", function (req, res) {
+  const fullname =req.body.fullname;
+  const phone =req.body.phone;
+  const gender =req.body.gender;
+  const dateofbirth =req.body.dateofbirth;
+  const address =req.body.address;
+  const photo =req?.file?.filename;
+
+  User.find(fullname,address,phone,gender,dateofbirth,photo)
+    .then(function (result) {
+      res.json(result);
+      console.log(result);
+    })
+
+    .catch(function () {
+      res.json({ msg: "something went wrong" });
+    });
+});
+
+
 
 
 module.exports=router
