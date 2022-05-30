@@ -56,7 +56,7 @@ router.put("/profile/insert/:pid",upload.single('profile_image'), function (req,
 
 
 
-
+//approve by admin
   router.put("/profile/approve",  function (req, res) {
     const id = req.body.id
     User.findOne({ _id: id })
