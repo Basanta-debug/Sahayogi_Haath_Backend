@@ -85,7 +85,7 @@ router.get("/cook/single/:id", function(req,res){
 
 
 
-
+//approval for cook
 router.put("/cook/approve",  function (req, res) {
   const id = req.body.id
   Cook.findOne({ _id: id })
@@ -106,7 +106,7 @@ router.put("/cook/approve",  function (req, res) {
 })
 
 
-
+//cook update
 router.put("/cook/update/:id",function(req,res){
   
   const id = req.params.id;
