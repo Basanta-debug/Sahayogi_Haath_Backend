@@ -1,7 +1,6 @@
 // const { builtinModules } = require("module");
 const mongoose = require("mongoose");
-// const { required } = require("nodemon/lib/config");
-//customer model
+
 const Cook = mongoose.model('Cook',{
     
     firstname : {

@@ -4,6 +4,8 @@ const Cook = require("../models/cookModel");
 const upload = require("../uploads/uploads");
 const router = new express.Router();
 
+
+//add cook route
 router.post("/cook/add",upload.single("image"),function (req, res) {
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
@@ -41,7 +43,7 @@ router.post("/cook/add",upload.single("image"),function (req, res) {
 );
 
 
-
+//get cook detailss
 router.get("/cook/details", function (req, res) {
   const firstname = req.body.firstname;
     const lastname = req.body.lastname;
