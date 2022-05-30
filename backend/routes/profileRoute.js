@@ -20,7 +20,7 @@ router.get("/profile/single/:uid", function(req,res){
 })
 
 
-
+//profile insertion
 router.put("/profile/insert/:pid",upload.single('profile_image'), function (req, res) {
     
     console.log(req.body)
@@ -55,8 +55,7 @@ router.put("/profile/insert/:pid",upload.single('profile_image'), function (req,
 })
 
 
-
-//approve by admin
+//admin approval for workers
   router.put("/profile/approve",  function (req, res) {
     const id = req.body.id
     User.findOne({ _id: id })
