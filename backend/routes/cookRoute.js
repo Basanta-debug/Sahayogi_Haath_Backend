@@ -68,7 +68,7 @@ router.get("/cook/details", function (req, res) {
 });
 
 
-
+//cook id for the single view
 router.get("/cook/single/:id", function(req,res){
   const id = req.params.id;
   Cook.findOne({_id:id})
@@ -85,7 +85,7 @@ router.get("/cook/single/:id", function(req,res){
 
 
 
-//approval for cook
+//approval for cooks
 router.put("/cook/approve",  function (req, res) {
   const id = req.body.id
   Cook.findOne({ _id: id })
@@ -106,7 +106,7 @@ router.put("/cook/approve",  function (req, res) {
 })
 
 
-//cook update
+//cook update by admin
 router.put("/cook/update/:id",function(req,res){
   
   const id = req.params.id;
