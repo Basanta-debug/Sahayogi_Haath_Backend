@@ -108,7 +108,7 @@ router.put("/cook/approve",  function (req, res) {
 
 //cook update by admin
 router.put("/cook/update/:id",function(req,res){
-  
+  //update by params
   const id = req.params.id;
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
@@ -120,7 +120,7 @@ router.put("/cook/update/:id",function(req,res){
   const workinglocation = req.body.workinglocation;
   const photo = req.body.photo;
  
- 
+ //finding by id and then updating the corresponding details
   Cook.findByIdAndUpdate( {_id:id} ,{firstname:firstname, lastname:lastname, phone:phone, gender:gender, address:address,age:age, experience:experience, workinglocation:workinglocation,photo:photo},function(err,docs){
       if (!err){
         
