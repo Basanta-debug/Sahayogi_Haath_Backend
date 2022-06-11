@@ -119,6 +119,7 @@ router.put("/cook/update/:id",function(req,res){
   const experience = req.body.experience;
   const workinglocation = req.body.workinglocation;
   const photo = req.body.photo;
+  const surname=req.body.surname;
  
  //finding by id and then updating the corresponding details
   Cook.findByIdAndUpdate( {_id:id} ,{firstname:firstname, lastname:lastname, phone:phone, gender:gender, address:address,age:age, experience:experience, workinglocation:workinglocation,photo:photo},function(err,docs){
