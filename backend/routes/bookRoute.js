@@ -54,7 +54,15 @@ router.get("/booking/details", function (req, res) {
     
   //make userid in product model
 
-  
+  Book.find(firstname, lastname, phone, street,address)
+    .then(function (result) {
+      res.json(result);
+      console.log(result);
+    })
+
+    .catch(function () {
+      res.json({ msg: "something went wrong" });
+    });
 });
 
   
