@@ -48,4 +48,12 @@ router.post("/comment/add", function (req, res) {
 // }
 
 
+router.get("/comment/details/:id", function (req, res) {
+  const text = req.body.text;
+
+  //make userid in product model
+
+});
+
+
 module.exports = router;
