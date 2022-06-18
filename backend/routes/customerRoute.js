@@ -148,6 +148,8 @@ router.put('/changepassword/:id',async(req,res)=>{
                     res.json(e)
                 })
             })
+        }else{
+            res.json("new password and password not match")
         }
     }
 })
