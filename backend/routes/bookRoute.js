@@ -43,6 +43,19 @@ router.post("/book/add",function (req, res) {
 
 
 
+router.get("/booking/details", function (req, res) {
+  const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const phone = req.body.phone;
+    
+    const address = req.body.address;
+    const street = req.body.street;
+    
+    
+  //make userid in product model
+
+  
+});
 
   
 module.exports = router;
