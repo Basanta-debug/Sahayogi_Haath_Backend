@@ -87,6 +87,22 @@ router.post("/customer/login",function(req,res){
 
 
 
+router.get("/customer/details", function (req, res) {
+    const username= req.body.username
+    const address= req.body.address
+ 
+    //make userid in product model 
+
+    User.find(username,address,phone,email)
+      .then(function (result) {
+        res.json(result);
+        console.log(result);
+      })
+  
+      .catch(function () {
+        res.json({ msg: "something went wrong" });
+      });
+  });
 
 
 
