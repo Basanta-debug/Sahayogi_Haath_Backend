@@ -91,6 +91,7 @@ router.get("/customer/details", function (req, res) {
     const username= req.body.username
     const address= req.body.address
     const phone= req.body.phone
+    const email= req.body.email
     //make userid in product model 
 
     User.find(username,address,phone,email)
