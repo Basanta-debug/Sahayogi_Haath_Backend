@@ -115,6 +115,30 @@ router.put('/changepassword/:id',async(req,res)=>{
 })
 
 
+router.put("/updatepassword",function(req, res){
+    
+    if(!req.body.email){
+        res.json({ msg: "Email wrong" });
+    }
+    else{
+       
+        const email=req.body.email
+        bcryptjs.hash(req.body.password, 10, function (e, hashed_pw){
+            User.findOneAndUpdate({email:email},{password:hashed_pw})
+            .then(function (result) {
+                res.json(result);
+                console.log(result);
+              }
+        )
+        .catch(
+            console.log('email not exist')
+        )
+
+        })
+        
+    }
+})
+
 
 
 
