@@ -120,7 +120,15 @@ router.put("/cook/update/:id",function(req,res){
   const workinglocation = req.body.workinglocation;
   const photo = req.body.photo;
  
-  
+  Cook.findByIdAndUpdate( {_id:id} ,{firstname:firstname, lastname:lastname, phone:phone, gender:gender, address:address,age:age, experience:experience, workinglocation:workinglocation,photo:photo},function(err,docs){
+      if (!err){
+        
+          res.json({msg: "update successfully!" , success: true })
+      }
+      else{
+          res.json({msg: err , success: true })
+      }
+      
   })
 })
 
