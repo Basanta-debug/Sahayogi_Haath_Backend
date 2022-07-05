@@ -87,23 +87,34 @@ router.post("/customer/login",function(req,res){
 
 
 
-router.get("/customer/details", function (req, res) {
-    const username= req.body.username
-    const address= req.body.address
-    const phone= req.body.phone
-    const email= req.body.email
-    //make userid in product model 
 
-    User.find(username,address,phone,email)
-      .then(function (result) {
-        res.json(result);
-        console.log(result);
-      })
-  
-      .catch(function () {
-        res.json({ msg: "something went wrong" });
-      });
-  });
+
+//for changing password
+router.put('/changepassword/:id',async(req,res)=>{
+   
+    const userData = await User.findOne({_id:req.params.id})
+    const comparPass = await bcryptjs.compare(req.body.currentpassword,userData.password);
+    if(!comparPass){
+      res.json("curent password not match")
+    }else{
+        if(req.body.newpassword === req.body.password){
+            bcryptjs.hash(req.body.password,10, function(e,hasPass){
+                 User.findOneAndUpdate({_id:req.params.id},{
+                    password:hasPass
+                },{new:true}).then(data=>{
+
+                    res.json('passwod chnged sucessfully')
+                }).catch(e=>{
+                    res.json(e)
+                })
+            })
+        }else{
+            res.json("new password and password not match")
+        }
+    }
+})
+
+
 
 
 
