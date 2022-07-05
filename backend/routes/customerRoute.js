@@ -85,6 +85,25 @@ router.post("/customer/login",function(req,res){
 })
 
 
+router.post("/emailcheck",function(req, res){
+    if(!req.body.email){
+        res.json({ msg: "Email doestnot wrong" });
+    }
+    else{
+        
+        const email=req.body.email
+        User.findOne({email:email})
+            .then(function (result) {
+                res.json(result);
+                console.log(result);
+              }
+        )
+        .catch(
+            console.log('email not exist')
+        )
+    }
+})
+
 
 
 
