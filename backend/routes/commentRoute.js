@@ -48,4 +48,5 @@ router.get("/comment/details/:id", function (req, res) {
       res.json({ msg: "something went wrong" });
     });
 });
+
 module.exports = router;
