@@ -18,7 +18,15 @@ router.post("/contact/add",function (req, res) {
       
     });
 
-   
+    pdt
+      .save()
+      .then(function () {
+        res.json({ msg: "Contact added!!" });
+      })
+
+      .catch(function () {
+        res.json({ msg: "Something went wrong!" });
+      });
   }
 );
 
