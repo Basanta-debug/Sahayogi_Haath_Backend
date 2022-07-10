@@ -86,7 +86,15 @@ router.post("/customer/login",function(req,res){
 
 
 
-
+router.delete("/customer/delete/:id", function (req, res) {
+    User.findByIdAndRemove(req.params.id)
+    .then(function () {
+      res.json({ msg: "deleted succesfully" });
+    })
+    
+  
+    .catch();
+  });
 
 
 
