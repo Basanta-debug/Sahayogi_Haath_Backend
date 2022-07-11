@@ -105,7 +105,11 @@ router.put("/comment/like", function (req, res) {
         const id = req.body.cid;
       
         Comment.findByIdAndUpdate(
-          id ,
+          id ,{
+      
+            $pull: { flag: req.body.userid },
+      
+        },
       
         { new: true },(err,doc)=>{
             console.log(req.body.userid)
