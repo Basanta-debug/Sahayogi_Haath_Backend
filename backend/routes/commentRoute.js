@@ -82,4 +82,23 @@ router.put("/comment/like", function (req, res) {
     })
 
 
+
+    router.put("/comment/flag", function (req, res) {
+      const id = req.body.cid;
+    
+      Comment.findByIdAndUpdate(
+        id ,{
+    
+          $push: { flag: req.body.userid },
+    
+      },
+    
+      { new: true },(err,doc)=>{
+          console.log(req.body.userid)
+          res.json({success:true})
+    
+        
+        })
+      })
+
 module.exports = router;
