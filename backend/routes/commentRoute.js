@@ -101,4 +101,18 @@ router.put("/comment/like", function (req, res) {
         })
       })
 
+      router.put("/comment/unflag", function (req, res) {
+        const id = req.body.cid;
+      
+        Comment.findByIdAndUpdate(
+          id ,
+      
+        { new: true },(err,doc)=>{
+            console.log(req.body.userid)
+            res.json({success:true})
+      
+          
+          })
+        })
+
 module.exports = router;
