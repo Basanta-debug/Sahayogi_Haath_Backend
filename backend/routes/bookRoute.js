@@ -44,26 +44,6 @@ router.post("/book/add",function (req, res) {
 
 
 router.get("/booking/details", function (req, res) {
-    const firstname = req.body.firstname;
-      const lastname = req.body.lastname;
-      const phone = req.body.phone;
-      
-      const address = req.body.address;
-      const street = req.body.street;
-      
-      
-    //make userid in product model
-  
-    Book.find(firstname, lastname, phone, street,address)
-      .then(function (result) {
-        res.json(result);
-        console.log(result);
-      })
-  
-      .catch(function () {
-        res.json({ msg: "something went wrong" });
-      });
-  });
-  
+
   
 module.exports = router;
