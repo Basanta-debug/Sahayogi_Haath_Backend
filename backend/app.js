@@ -17,7 +17,12 @@ app.use(express.urlencoded({extended : true}));
 require("./database/db");
 const customerRoute = require("./routes/customerRoute");
 const profileroute = require("./routes/profileRoute");
+const cookRoute = require("./routes/cookRoute");
+const bookRoute = require('./routes/bookRoute')
 app.use(customerRoute);
 app.use(profileroute);
+app.use(cookRoute);
+app.use(bookRoute);
+
 
 app.listen("180");

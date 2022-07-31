@@ -85,10 +85,84 @@ router.post("/customer/login",function(req,res){
 })
 
 
+router.post("/emailcheck",function(req, res){
+    if(!req.body.email){
+        res.json({ msg: "Email doestnot wrong" });
+    }
+    else{
+        
+        const email=req.body.email
+        User.findOne({email:email})
+            .then(function (result) {
+                res.json(result);
+                console.log(result);
+              }
+        )
+        .catch(
+            console.log('email not exist')
+        )
+    }
+})
+
+router.delete("/customer/delete/:id", function (req, res) {
+    User.findByIdAndRemove(req.params.id)
+    .then(function () {
+      res.json({ msg: "deleted succesfully" });
+    })
+    .catch(function () {
+      res.json({ msg: "Try Again" });
+    })
+  
+    .catch();
+  });
+
+router.put("/updatepassword",function(req, res){
+    
+    if(!req.body.email){
+        res.json({ msg: "Email wrong" });
+    }
+    else{
+       
+        const email=req.body.email
+        bcryptjs.hash(req.body.password, 10, function (e, hashed_pw){
+            User.findOneAndUpdate({email:email},{password:hashed_pw})
+            .then(function (result) {
+                res.json(result);
+                console.log(result);
+              }
+        )
+        .catch(
+            console.log('email not exist')
+        )
+
+        })
+        
+    }
+})
 
 
+router.put('/changepassword/:id',async(req,res)=>{
+    const userData = await User.findOne({_id:req.params.id})
+    const comparPass = await bcryptjs.compare(req.body.currentpassword,userData.password);
+    if(!comparPass){
+      res.json("curent password not match")
+    }else{
+        if(req.body.newpassword === req.body.password){
+            bcryptjs.hash(req.body.password,10, function(e,hasPass){
+                 User.findOneAndUpdate({_id:req.params.id},{
+                    password:hasPass
+                },{new:true}).then(data=>{
 
-
+                    res.json('passwod chnged sucessfully')
+                }).catch(e=>{
+                    res.json(e)
+                })
+            })
+        }else{
+            res.json("new password and password not match")
+        }
+    }
+})
 
 
 

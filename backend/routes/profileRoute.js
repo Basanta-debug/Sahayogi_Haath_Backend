@@ -5,7 +5,7 @@ const router = new express.Router();
 const upload= require("../uploads/uploads");
 const auth= require("../auth/authentication");
 
-//single profile view
+
 router.get("/profile/single/:uid", function(req,res){
     const uid = req.params.uid
     
@@ -20,7 +20,7 @@ router.get("/profile/single/:uid", function(req,res){
 })
 
 
-//updating
+
 router.put("/profile/insert/:pid",upload.single('profile_image'), function (req, res) {
     
     console.log(req.body)
@@ -35,7 +35,7 @@ router.put("/profile/insert/:pid",upload.single('profile_image'), function (req,
         {_id:req.params.pid},
         
         {
-        // id:id,
+
         fullname:fullname,
         phone:phone,
         gender:gender,
@@ -54,27 +54,7 @@ router.put("/profile/insert/:pid",upload.single('profile_image'), function (req,
      })
 })
 
-//for getting user details
-router.get("/profile/details", function (req, res) {
-    const fullname =req.body.fullname;
-    const phone =req.body.phone;
-    const gender =req.body.gender;
-    const dateofbirth =req.body.dateofbirth;
-    const address =req.body.address;
-    const photo =req?.file?.filename;
 
-    User.find(fullname,address,phone,gender,dateofbirth,photo)
-      .then(function (result) {
-        res.json(result);
-        console.log(result);
-      })
-  
-      .catch(function () {
-        res.json({ msg: "something went wrong" });
-      });
-  });
-
-//for approving the profile
   router.put("/profile/approve",  function (req, res) {
     const id = req.body.id
     User.findOne({ _id: id })
