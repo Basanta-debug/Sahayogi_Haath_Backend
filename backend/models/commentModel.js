@@ -18,6 +18,7 @@ const Comment = mongoose.model('Comment',{
    rating:{
     type:Number,
 
+
    }
 
 
