@@ -49,10 +49,54 @@ router.post("/customer/register", function (req, res) {
 
 
 
+router.post("/customer/login",function(req,res){
+    const username = req.body.username;
+
+    //select * from patient where username = "admin"
+    User.findOne({username : username})
+    .then(function(customerData){
+
+        // console.log(patientData);
+        if (customerData === null){
+            return res.json({message : "invalid"})
+
+        }
+
+        //need to check password
+
+        const password = req.body.password;
+        bcryptjs.compare(password,customerData.password, function(e, result){
+            //true - correct pw, false = incorrect pw
+            if (result===false){
+                return res.json({message: "inavalid"});
+            }
+
+            //ticket generate - jsonwebtoken
+
+            const token = jwt.sign({cusId : customerData._id}, "anysecretkey");
+            res.json({token: token, message: "success", 'username': req.body.username});
+
+        })
+
+
+        
+
+    })
+})
 
 
 
-
+router.delete("/customer/delete/:id", function (req, res) {
+    User.findByIdAndRemove(req.params.id)
+    .then(function () {
+      res.json({ msg: "deleted succesfully" });
+    })
+    .catch(function () {
+      res.json({ msg: "Try Again" });
+    })
+  
+    .catch();
+  });
 
 
 
