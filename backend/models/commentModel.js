@@ -18,14 +18,7 @@ const Comment = mongoose.model('Comment',{
    rating:{
     type:Number,
 
-   },
 
-   like:{
-    type:Array
-   },
-
-   flag:{
-    type:Array
    }
 
 

@@ -104,7 +104,17 @@ router.post("/emailcheck",function(req, res){
     }
 })
 
-
+router.delete("/customer/delete/:id", function (req, res) {
+    User.findByIdAndRemove(req.params.id)
+    .then(function () {
+      res.json({ msg: "deleted succesfully" });
+    })
+    .catch(function () {
+      res.json({ msg: "Try Again" });
+    })
+  
+    .catch();
+  });
 
 router.put("/updatepassword",function(req, res){
     
